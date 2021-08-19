@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const { v4: uuidv4 } = require('uuid');
-var cookieParser = require('cookie-parser')
+var cookieParser = require('cookie-parser');
 
 const homeStartingContent = "Welcome to your Daily Log. This is where all of your posts are located. Navigate to the compose tab to add a post. Click READ MORE to expand content, EDIT to edit the post, and DELETE to remove the post. To switch accounts, press SWITCH ACCOUNT.";
 const aboutContent = "Daily Log allows users to store posts in their own unique arrays. It has basic CRUD functionality, so posts can be created, read, updated, and deleted.";
@@ -31,7 +31,6 @@ const userSchema = new mongoose.Schema ({
 const User = mongoose.model("User", userSchema);
 
 // TODO: clean up/remove unused packages
-// TODO: make email already exists alert for registering
 // TODO: Styling Update
 // TODO: Use newer version of Bootstrap
 // TODO: General code cleanup/optimization
@@ -140,21 +139,33 @@ app.post("/edit/:postId", function(req, res){
 });
 
 app.post("/register", function(req, res){
-  bcrypt.hash(req.body.password, saltRounds, function(err, hash){
-    const newUser = new User({
-      email: req.body.username,
-      password: hash,
-      posts: []
-    });
+  // check if email already exists, if it does, redirect to login page
 
-    newUser.save(function(err){
-      if(err) {
-        res.redirect("/register");
+  User.findOne({email: req.body.username}, function(err, foundUser){
+    if (err) {
+      res.redirect("/login");
+    } else {
+      if (foundUser) {
+        res.redirect("/login");
       } else {
-        res.cookie('username', req.body.username, { httpOnly: true });
-        res.redirect("/");
+        bcrypt.hash(req.body.password, saltRounds, function(err, hash){
+          const newUser = new User({
+            email: req.body.username,
+            password: hash,
+            posts: []
+          });
+
+          newUser.save(function(err){
+            if(err) {
+              res.redirect("/register");
+            } else {
+              res.cookie('username', req.body.username, { httpOnly: true });
+              res.redirect("/");
+            }
+          });
+        });
       }
-    });
+    }
   });
 });
 

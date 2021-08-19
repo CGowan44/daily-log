@@ -7,7 +7,6 @@ When the remote version is available, the link will be found here.
 
 The current to do list is:
 * Clean up/remove unused packages
-* Make email already exists alert for registering
 * Styling Updates
 * Use newer version of Bootstrap
 * General code cleanup/optimization
