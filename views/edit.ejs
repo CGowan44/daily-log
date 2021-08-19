@@ -1,0 +1,15 @@
+<%# TODO: add a means of specifying post id in edit route action  %>
+<%# TODO: prefill fields with current post title and content %>
+<%- include("partials/header"); -%>
+    <h1>Edit</h1>
+    <form class="" action="/edit/<%=post._id%>" method="post">
+      <div class="form-group">
+        <label>Title</label>
+        <input class="form-control" type="text" name="postTitle" value="<%=post.title%>">
+        <label>Post</label>
+        <textarea class="form-control" name="postBody" rows="5" cols="30"><%=post.content%></textarea>
+      </div>
+      <button class="btn btn-primary" type="submit" name="button">Confirm Edits</button>
+    </form>
+
+<%- include("partials/footer"); -%>
