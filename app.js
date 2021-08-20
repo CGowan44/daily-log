@@ -19,7 +19,12 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 app.use(cookieParser());
 
-mongoose.connect("mongodb://localhost:27017/logDB", {useNewUrlParser: true, useUnifiedTopology: true});
+// for local db connect
+// mongoose.connect("mongodb://localhost:27017/logDB", {useNewUrlParser: true, useUnifiedTopology: true});
+
+// for mongodb atlas (env variable managed by heroku)
+mongoose.connect(process.env.MONGO_ATLAS_CONNECT, {useNewUrlParser: true, useUnifiedTopology: true});
+
 mongoose.set("useCreateIndex", true);
 
 const userSchema = new mongoose.Schema ({
@@ -285,6 +290,12 @@ app.get("/delete/:postId", function(req, res){
   }, 300);
 });
 
-app.listen(3000, function() {
-  console.log("Server started on port 3000");
+// for local use
+// let port = 3000;
+
+// for heroku/remote use
+let port = process.env.PORT;
+
+app.listen(port, function() {
+  console.log("Server started successfully.");
 });
