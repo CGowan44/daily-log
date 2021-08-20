@@ -8,6 +8,8 @@ There are comments in app.js that indicate where code can be adjusted to functio
 In the current state, the app is running on heroku with mongodb atlas here:
 https://aqueous-hamlet-65908.herokuapp.com/
 
+<- It should be noted that this app uses very basic authentication methods for users and is therefore not very secure in the grand scheme of things. ->
+
 The current to do list is:
 * Clean up/remove unused packages
 * Styling Updates
