@@ -13,6 +13,7 @@ https://aqueous-hamlet-65908.herokuapp.com/
 The current to do list is:
 * Clean up/remove unused packages
 * Styling Updates
+* Improve mobile experience
 * Use newer version of Bootstrap
 * General code cleanup/optimization
 * Improve Security
