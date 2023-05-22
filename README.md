@@ -5,8 +5,8 @@ It has basic CRUD functionality with the ability to compose posts, read them, ed
 Bcrypt is used for password encryption.
 
 There are comments in app.js that indicate where code can be adjusted to function locally.
-In the current state, the app is running on heroku with mongodb atlas here:
-https://aqueous-hamlet-65908.herokuapp.com/
+In the current state, the app is running on render with mongodb atlas here:
+https://daily-log.onrender.com
 
 <- It should be noted that this app uses very basic authentication methods for users and is therefore not very secure in the grand scheme of things. ->
 
