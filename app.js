@@ -22,7 +22,7 @@ app.use(cookieParser());
 // for local db connect
 // mongoose.connect("mongodb://localhost:27017/logDB", {useNewUrlParser: true, useUnifiedTopology: true});
 
-// for mongodb atlas (env variable managed by heroku)
+// for mongodb atlas (env variable managed by Render)
 mongoose.connect(process.env.MONGO_ATLAS_CONNECT, {useNewUrlParser: true, useUnifiedTopology: true});
 
 mongoose.set("useCreateIndex", true);
@@ -293,7 +293,7 @@ app.get("/delete/:postId", function(req, res){
 // for local use
 // let port = 3000;
 
-// for heroku/remote use
+// for Render/remote use
 let port = process.env.PORT;
 
 app.listen(port, function() {
